@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <a class="hover" style="float: right;" (click)="presentAlert()">Edit Location</a>
+      5 Days Forecast
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="primary" *ngIf="weatherForecast">
+  <ion-title class="ion-text-center top">Five days weather forecast for</ion-title>
+  <ion-title class="ion-text-center">{{weatherCity.name}}, {{weatherCity.country}}</ion-title>
+  <ion-grid *ngFor="let forecast of weatherForecast">
+
+    <ion-card class="card">
+      <ion-row>
+        <ion-col>
+          <div class="heading">{{forecast.dt_txt | date : "dd-MM-yyyy h:mm a"}}</div>
+          <ion-list>
+            <ion-item lines="none">
+              <strong>Weather:</strong> {{forecast.weather[0].description}}
+            </ion-item>
+            <ion-item lines="none">
+              <strong>Temperature:</strong> {{forecast.main.temp | number:'1.0-1'}} &deg;C
+            </ion-item>
+            <ion-item lines="none">
+              <strong>Humidity:</strong> {{forecast.main.humidity}} %
+            </ion-item>
+            <ion-item lines="none">
+              <strong>Wind Speed: </strong>{{forecast.wind.speed}} m/s
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </ion-grid>
+</ion-content>

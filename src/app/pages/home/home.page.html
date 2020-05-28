@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <a class="hover" style="float: right;" (click)="presentAlert()">Edit Location</a>
+      Weather Forecast
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid *ngIf="weather">
+    <ion-row>
+      <ion-col>
+        <h2 class="location">{{weather.name}}, {{weather.sys.country}}</h2>
+        <div class="icon"><img src={{imgWeather}} /></div>
+        <h4 class="desc">{{weather.weather[0].description | uppercase}}</h4>
+        <h1 class="temp">{{ weather.main.temp }} &deg;C</h1>
+      </ion-col>
+    </ion-row>
+
+    <ion-card>
+      <ion-row>
+        <ion-col>
+          <div class="heading">
+            {{ weather.dt* 1000 | date: "dd-MM-yyyy h:mm a"}}
+          </div>
+          <ion-list>
+            <ion-item lines="none">
+              <strong>Humidity: </strong> {{weather.main.humidity}} %
+            </ion-item>
+            <ion-item lines="none">
+              <strong>Wind Speed: </strong>{{weather.wind.speed}} m/s
+            </ion-item>
+            <ion-item lines="none">
+              <strong>Sunrise: </strong>{{weather.sys.sunrise* 1000 | date: "h:mm a"}}
+            </ion-item>
+            <ion-item lines="none">
+              <strong>Sunset: </strong>{{weather.sys.sunset* 1000 | date: "h:mm a"}}
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </ion-grid>
+</ion-content>
